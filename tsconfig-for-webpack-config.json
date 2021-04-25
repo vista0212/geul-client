@@ -1,0 +1,9 @@
+{
+  // ts webpack 설정하기 위한 파일
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "Node",
+    "target": "ES5",
+    "esModuleInterop": true
+  }
+}

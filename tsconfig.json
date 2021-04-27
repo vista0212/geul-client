@@ -18,6 +18,10 @@
     "strict": true,
     "resolveJsonModule": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@pages/*": ["pages/*"],
+      "@utils/*": ["utils/*"],
+      "@layouts/*": ["layouts/*"]
+    }
   }
 }

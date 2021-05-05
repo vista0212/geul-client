@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-import App from '@layouts/App';
+import App from '@layouts/App/App';
 import { BrowserRouter } from "react-router-dom";
 
 render(

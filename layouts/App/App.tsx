@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import loadable from '@loadable/component';
 import { Route, Switch } from 'react-router';
-import { AboutButton, MainHeader, MainWrapper } from "./style";
+import { AboutButton, MainHeader, MainLine, MainWrapper } from "./style";
 import Logo from "@utils/icon/logo";
 
 const Posts = loadable(() => import('@pages/Posts'))
@@ -11,11 +11,12 @@ const App: FC = () => {
   return (
     <MainWrapper>
       <MainHeader>
-        <Logo></Logo>
+        <Logo />
         <AboutButton>ABOUT</AboutButton>
       </MainHeader>
+      <MainLine />
       <Switch>
-        <Route exact path="/" component={Posts}/>
+        <Route exact path="/" component={Posts} />
       </Switch>
     </MainWrapper>);
 };

@@ -13,7 +13,11 @@ export const GoBack = styled.div`
   
   color: #C4C4C4;
   
-  column-gap: 0.25rem;`
+  column-gap: 0.25rem;
+  
+  @media screen and (max-width: 968px) {
+    font-size: 0.95rem;
+  }`
 
 export const PostHeader = styled.div`
   display: flex;
@@ -27,7 +31,11 @@ export const PostHeader = styled.div`
 export const PostTitle = styled.span`
   font-size: 2rem;
   color: hsla(255, 87%, 100%, 1);
-  work-break: break-all;`
+  work-break: break-all;
+  
+  @media screen and (max-width: 968px) {
+    font-size: 1.5rem;
+  }`
 
 export const PostBody = styled.p`
   padding: 3.125rem 1.25rem;

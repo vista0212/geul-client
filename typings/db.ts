@@ -4,3 +4,10 @@ export interface IPost {
   thumbnail: string;
   created_at: string;
 }
+
+export interface IComment {
+  id: number;
+  nickname: string;
+  created_at: string;
+  body: string;
+}

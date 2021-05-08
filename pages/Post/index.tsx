@@ -3,13 +3,14 @@ import { GoBack, PostBody, PostHeader, PostTitle, PostWrapper } from "@pages/Pos
 import BackArrow from "@utils/icon/back_arrow";
 import Share from "@utils/icon/Share";
 import Comments from "../../components/Comments";
+import { IComment } from "../../typings/db";
 
 const Post = () => {
-  const comments = [
-    { nickname: '123', created_at: '2020.12.12', body: '125125251' },
-    { nickname: '123', created_at: '2020.12.12', body: '125125251' },
-    { nickname: '123', created_at: '2020.12.12', body: '125125251' },
-    { nickname: '123', created_at: '2020.12.12', body: '125125251' }];
+  const comments: Array<IComment> = [
+    { id: 1, nickname: '123', created_at: '2020.12.12', body: '125125251' },
+    { id: 2, nickname: '123', created_at: '2020.12.12', body: '125125251' },
+    { id: 3, nickname: '123', created_at: '2020.12.12', body: '125125251' },
+    { id: 4, nickname: '123', created_at: '2020.12.12', body: '125125251' }];
   return (
     <PostWrapper>
       <GoBack>

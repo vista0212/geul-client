@@ -13,11 +13,17 @@ export const CommentWrapper = styled.li`
 
 export const CommentInfo = styled.div`
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   
   padding: 0 0.75rem;
  
   font-size: 1.25rem;
-  color: #fff;`
+  color: #fff;
+  
+  .icon_wrapper:first-child {
+    margin-right: 0.5rem;
+  }`
 
 export const CommentLine = styled.hr`
   margin: 0;

@@ -7,7 +7,7 @@ interface IIconWrapper {
 
 const IconWrapper: FC<IIconWrapper> = ({ children, width, height }) => {
   return (
-    <span style={{ width, height }}>
+    <span className="icon_wrapper" style={{ width, height }}>
       {children}
     </span>
   )

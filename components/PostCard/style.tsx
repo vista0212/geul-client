@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { $white } from "@utils/color";
 
 export const PostCardWrapper = styled.div`
   display: flex;
@@ -11,7 +12,7 @@ export const PostCardWrapper = styled.div`
   
   border-radius: 4px;
   
-  color: hsla(255, 87%, 100%, 1);
+  color: ${$white};
   
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   

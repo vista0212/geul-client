@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { $white } from "@utils/color";
 
 export const MainWrapper = styled.section`
   width: 100%;
@@ -43,7 +44,7 @@ export const AboutButton = styled.button`
   padding: 0;
   
   font-size: 24px;
-  color: #fff;
+  color: ${$white};
   
   border: none;
   background: none;

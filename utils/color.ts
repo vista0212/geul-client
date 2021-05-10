@@ -1,0 +1,1 @@
+export const $white = `hsla(255, 100%, 100%, 0.9)`;

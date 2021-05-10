@@ -7,7 +7,7 @@ import { IComment } from "../../typings/db";
 
 const Post = () => {
   const comments: Array<IComment> = [
-    { id: 1, nickname: '123', created_at: '2020.12.12', body: '125125251' },
+    { id: 1, nickname: '123', created_at: '2020.12.12', body: '안녕하세요 반갑습니다. 반갑고 반갑습니다'.repeat(100) },
     { id: 2, nickname: '123', created_at: '2020.12.12', body: '125125251' },
     { id: 3, nickname: '123', created_at: '2020.12.12', body: '125125251' },
     { id: 4, nickname: '123', created_at: '2020.12.12', body: '125125251' }];

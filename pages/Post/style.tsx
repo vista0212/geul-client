@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { $white } from "@utils/color";
 
 export const PostWrapper = styled.section`
   margin: auto;
@@ -28,9 +29,12 @@ export const PostHeader = styled.div`
   margin: 1.25rem 0;
   padding: 0 1.25rem;`
 
-export const PostTitle = styled.span`
+export const PostTitle = styled.h1`
+  margin: 0;
+  font-weight: 500;
+
   font-size: 2rem;
-  color: hsla(255, 87%, 100%, 1);
+  color: ${$white};
   work-break: break-all;
   
   @media screen and (max-width: 968px) {
@@ -43,8 +47,10 @@ export const PostBody = styled.p`
   
   word-break: break-all;
   
+  line-height: 1.5;
+  letter-spacing: -0.3px;
   font-size: 1.125rem;
-  color: #fff;
+  color: ${$white};
   
   border-top: 1px solid #00E6BB;
   border-bottom: 1px solid #00E6BB;`

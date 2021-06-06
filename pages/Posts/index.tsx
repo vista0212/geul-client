@@ -15,7 +15,6 @@ const Posts = () => {
       })
       .catch(e => console.log(e));
   }, []);
-  console.log(posts);
   return (
     <PostsWrapper>
       {posts.map(post => <PostCard key={post.id} post={post} />)}

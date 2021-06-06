@@ -41,7 +41,11 @@ export const PostCardTitle = styled.span`
   
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 1rem;`
+  font-size: 1rem;
+  
+  &:link {
+    border: 0;
+  }`
 
 export const PostCardDate = styled.time`
   margin-left: auto;

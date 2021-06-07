@@ -1,10 +1,10 @@
 export interface IPost {
-  id?: number;
-  title?: string;
-  body?: string;
-  isPublished?: string;
-  createdAt?: string;
-  file?: IFile
+  id: number;
+  title: string;
+  body: string;
+  isPublished: string;
+  createdAt: string;
+  file: IFile
 }
 
 export interface IComment {

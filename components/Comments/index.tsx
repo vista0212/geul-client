@@ -1,5 +1,5 @@
-import React, { FC, LegacyRef, useCallback, useEffect, useRef, useState } from 'react';
-import { Editor, EditorProps } from '@toast-ui/react-editor';
+import React, { FC, LegacyRef, useCallback, useRef } from 'react';
+import { Editor } from '@toast-ui/react-editor';
 import {
   CommentForm,
   CommentList,
@@ -12,9 +12,16 @@ import {
 } from './style';
 import 'codemirror/lib/codemirror.css';
 import '@toast-ui/editor/dist/toastui-editor-only.css';
+import '@toast-ui/editor-plugin-code-syntax-highlight';
+import codeSyntaxHighlightPlugin from '@toast-ui/editor-plugin-code-syntax-highlight';
+import 'tui-color-picker/dist/tui-color-picker.css';
+import hljs from 'highlight.js';
+import javascript from 'highlight.js/lib/languages/javascript';
 import { IComment } from '../../typings/db';
 import Comment from '../Comment';
 import useInput from '../../hooks/useInput';
+
+hljs.registerLanguage('javascript', javascript);
 
 interface Props {
   comments: Array<IComment>;
@@ -23,14 +30,21 @@ interface Props {
 const Comments: FC<Props> = ({ comments }) => {
   const [nickname, onChangeNickname, setNickname] = useInput('');
   const [password, onChangePassword, setPassword] = useInput('');
+  const body = useRef<Editor>(null);
 
   const onSubmit = useCallback((e) => {
     e.preventDefault();
-    console.log(nickname, password);
+    if (!nickname || !password || !body) {
+      alert('값을 입력해주세요!');
+    }
 
     setNickname('');
     setPassword('');
-  }, [nickname, password]);
+  }, [body, nickname, password]);
+
+  const onChangeBody = useCallback(() => {
+    console.log(body?.current?.getInstance().getCurrentModeEditor());
+  }, []);
 
   return (
     <CommentsWrapper>
@@ -48,7 +62,10 @@ const Comments: FC<Props> = ({ comments }) => {
           previewStyle="vertical"
           initialValue=""
           height="250px"
-          useCommandShortcut={true} />
+          ref={body}
+          useCommandShortcut={true}
+          usageStatistics={false}
+          plugins={[codeSyntaxHighlightPlugin, { hljs }]} />
       </CommentForm>
       <CommentList>
         {comments.map(comment => <Comment comment={comment} />)}

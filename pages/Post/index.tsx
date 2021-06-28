@@ -24,7 +24,6 @@ const Post = () => {
   const post = data.data;
 
   // called
-
   console.log({ post });
 
   const comments: Array<IComment> = [

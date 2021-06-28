@@ -7,6 +7,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 
 const Posts = loadable(() => import('@pages/Posts'));
 const Post = loadable(() => import('@pages/Post'));
+const Test = loadable(() => import('@pages/Test'));
 
 const queryClient = new QueryClient();
 
@@ -23,6 +24,7 @@ const App: FC = () => {
         <Switch>
           <Route exact path="/" component={Posts} />
           <Route exact path="/post/:id" component={Post} />
+          <Route exact path="/test" component={Test} />
           <Redirect to="/" />
         </Switch>
       </MainWrapper>

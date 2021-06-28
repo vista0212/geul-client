@@ -1,4 +1,4 @@
-import React, { FC, LegacyRef, useCallback, useRef } from 'react';
+import React, { FC, useCallback, useRef } from 'react';
 import { Editor } from '@toast-ui/react-editor';
 import {
   CommentForm,
@@ -11,40 +11,37 @@ import {
   SubmitButton,
 } from './style';
 import 'codemirror/lib/codemirror.css';
-import '@toast-ui/editor/dist/toastui-editor-only.css';
-import '@toast-ui/editor-plugin-code-syntax-highlight';
-import codeSyntaxHighlightPlugin from '@toast-ui/editor-plugin-code-syntax-highlight';
-import 'tui-color-picker/dist/tui-color-picker.css';
-import hljs from 'highlight.js';
-import javascript from 'highlight.js/lib/languages/javascript';
+import '@toast-ui/editor/dist/toastui-editor.css';
+import './css.css';
 import { IComment } from '../../typings/db';
 import Comment from '../Comment';
 import useInput from '../../hooks/useInput';
-
-hljs.registerLanguage('javascript', javascript);
+import axios from 'axios';
 
 interface Props {
   comments: Array<IComment>;
 }
 
 const Comments: FC<Props> = ({ comments }) => {
-  const [nickname, onChangeNickname, setNickname] = useInput('');
+  const [name, onChangeName, setName] = useInput('');
   const [password, onChangePassword, setPassword] = useInput('');
   const body = useRef<Editor>(null);
 
   const onSubmit = useCallback((e) => {
     e.preventDefault();
-    if (!nickname || !password || !body) {
+    if (!name || !password || !body) {
       alert('값을 입력해주세요!');
     }
 
-    setNickname('');
-    setPassword('');
-  }, [body, nickname, password]);
-
-  const onChangeBody = useCallback(() => {
-    console.log(body?.current?.getInstance().getCurrentModeEditor());
-  }, []);
+    axios.post('http://localhost:3030/api/comments', { nickname: name, password, body })
+      .then(({ data: { comment } }) => {
+        setName('');
+        setPassword('');
+        body?.current && body.current.getInstance().reset();
+        console.log({ comment });
+      })
+      .catch(e => console.error('댓글 작성에 실패했습니다. ', e));
+  }, [body, name, password]);
 
   return (
     <CommentsWrapper>
@@ -52,7 +49,7 @@ const Comments: FC<Props> = ({ comments }) => {
       <CommentForm onSubmit={onSubmit}>
         <InputWithButton>
           <InputBox>
-            <Input placeholder="nickname" className="input" value={nickname} onChange={onChangeNickname} />
+            <Input placeholder="name" className="input" value={name} onChange={onChangeName} />
             <Input placeholder="password" className="input" value={password} onChange={onChangePassword} />
           </InputBox>
           <SubmitButton type="submit">POST</SubmitButton>
@@ -64,8 +61,7 @@ const Comments: FC<Props> = ({ comments }) => {
           height="250px"
           ref={body}
           useCommandShortcut={true}
-          usageStatistics={false}
-          plugins={[codeSyntaxHighlightPlugin, { hljs }]} />
+        />,
       </CommentForm>
       <CommentList>
         {comments.map(comment => <Comment comment={comment} />)}

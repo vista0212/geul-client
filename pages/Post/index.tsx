@@ -38,7 +38,7 @@ const Post = () => {
       </GoBack>
       <PostHeader>
         <PostTitle>{data?.data.title}</PostTitle>
-        <Share />
+        <Share onClick={() => navigator.clipboard.writeText(`http://localhost:3000/post/${id}`)} />
       </PostHeader>
       <PostBody>
         {data?.data.body}

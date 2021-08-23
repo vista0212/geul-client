@@ -1,11 +1,18 @@
 import styled from "@emotion/styled";
 import { $white } from "@utils/color";
 
-export const MainWrapper = styled.section`
+export const MainWrapper = styled.section`  
   width: 100%;
   min-height: 100%;
   
-  background: #282626;`
+  background: #282626;
+  
+  font-family: 'Roboto Light';
+  
+  @font-face { 
+    font-family: 'Roboto Light'; 
+    src: url(../../public/font/Roboto-Light.ttf) format('truetype');
+  }`
 
 export const MainHeader = styled.header`
   display: flex;

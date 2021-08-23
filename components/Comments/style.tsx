@@ -50,6 +50,7 @@ export const Input = styled.input`
   height: 2.1875rem;
 
   font-size: 1.25rem;
+  font-family: inherit;
   
   &:focus-visible {
     outline: none !important;
@@ -62,7 +63,13 @@ export const Input = styled.input`
   }`;
 
 export const CommentInput = styled.textarea`
-  height: 130px;
+  padding: 0.75rem 0.75rem;
+
+  height: 8.125rem;
+  
+  font-size: 1rem;
+  font-family: inherit;
+  color: #fff;
   
   border: 1px solid #00E6BB;
   background: none;

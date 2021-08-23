@@ -49,7 +49,7 @@ const Comments: FC<Props> = ({ comments }) => {
         <InputWithButton>
           <InputBox>
             <Input placeholder="name" className="input" value={name} onChange={onChangeName} />
-            <Input placeholder="password" className="input" value={password} onChange={onChangePassword} />
+            <Input placeholder="password" className="input" type='password' value={password} onChange={onChangePassword} />
           </InputBox>
           <SubmitButton type="submit">POST</SubmitButton>
         </InputWithButton>

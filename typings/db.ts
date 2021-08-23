@@ -4,12 +4,13 @@ export interface IPost {
   body: string;
   isPublished: string;
   createdAt: string;
-  file: IFile
+  file: IFile;
+  comments: Array<IComment>;
 }
 
 export interface IComment {
   id: number;
-  nickname: string;
+  name: string;
   created_at: string;
   body: string;
 }

@@ -1,5 +1,4 @@
-import React, { FC, useCallback, useRef } from 'react';
-import { Editor } from '@toast-ui/react-editor';
+import React, { FC, useCallback } from 'react';
 import {
   CommentForm,
   CommentInput,
@@ -16,7 +15,6 @@ import { IComment, IPost } from '../../typings/db';
 import Comment from '../Comment';
 import useInput from '../../hooks/useInput';
 import { Fetcher } from '@utils/Fetcher';
-import { ApiResponse } from '../../typings/ApiResponse';
 
 interface Props {
   comments: Array<IComment>;
@@ -41,8 +39,18 @@ const Comments: FC<Props> = ({ comments, post_id }) => {
         post_id,
         body,
       });
+
+      if (!response.isSuccess) {
+        alert(response.message);
+        return;
+      }
+
+      setName('');
+      setPassword('');
+      setBody('');
+
     } catch (e) {
-      alert('문제가 발생했습니다 !');
+      alert(e.message || '문제가 발생했습니다 !');
     }
   }, [body, name, password]);
 

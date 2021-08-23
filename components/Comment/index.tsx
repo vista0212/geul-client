@@ -17,10 +17,10 @@ const Comment: FC<Props> = ({ comment }) => {
       <CommentInfo>
         <span>{name}&nbsp;({FormatDate.format(created_at, 'YYYY년 MM월 DD일')})</span>
         <div>
-          <IconWrapper width={24} height={24}>
+          <IconWrapper width={24} height={24} canClick={true}>
             <Pen />
           </IconWrapper>
-          <IconWrapper width={24} height={24}>
+          <IconWrapper width={24} height={24} canClick={true}>
             <TrashCan />
           </IconWrapper>
         </div>

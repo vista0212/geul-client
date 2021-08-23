@@ -12,7 +12,9 @@ import { ApiResponse } from '../../typings/ApiResponse';
 const Post = () => {
   const { id } = useParams<{ id: string | undefined }>();
   const { isLoading, error, data } = useQuery<ApiResponse<IPost>>(
-    '', () => Fetcher.get<IPost>(`http://localhost:3030/api/posts/${id}`));
+    '', () => Fetcher.get<IPost>(`http://localhost:3030/api/posts/${id}`), {
+      refetchOnWindowFocus: false,
+    });
 
   if (isLoading) {
     return <span>로딩중</span>;

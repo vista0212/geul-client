@@ -12,34 +12,38 @@ import {
   SubmitButton,
 } from './style';
 import './css.css';
-import { IComment } from '../../typings/db';
+import { IComment, IPost } from '../../typings/db';
 import Comment from '../Comment';
 import useInput from '../../hooks/useInput';
-import axios from 'axios';
+import { Fetcher } from '@utils/Fetcher';
+import { ApiResponse } from '../../typings/ApiResponse';
 
 interface Props {
   comments: Array<IComment>;
+  post_id: IPost['id']
 }
 
-const Comments: FC<Props> = ({ comments }) => {
+const Comments: FC<Props> = ({ comments, post_id }) => {
   const [name, onChangeName, setName] = useInput('');
   const [password, onChangePassword, setPassword] = useInput('');
-  const body = useRef<Editor>(null);
+  const [body, onChangeBody, setBody] = useInput('');
 
-  const onSubmit = useCallback((e) => {
+  const onSubmit = useCallback(async (e) => {
     e.preventDefault();
     if (!name || !password || !body) {
       alert('값을 입력해주세요!');
+      return;
     }
-
-    axios.post('http://localhost:3030/api/comments', { nickname: name, password, body })
-      .then(({ data: { comment } }) => {
-        setName('');
-        setPassword('');
-        body?.current && body.current.getInstance().reset();
-        console.log({ comment });
-      })
-      .catch(e => console.error('댓글 작성에 실패했습니다. ', e));
+    try {
+      const response = await Fetcher.post<IComment>('http://localhost:3030/api/comments', {
+        name,
+        password,
+        post_id,
+        body,
+      });
+    } catch (e) {
+      alert('문제가 발생했습니다 !');
+    }
   }, [body, name, password]);
 
   return (
@@ -49,11 +53,12 @@ const Comments: FC<Props> = ({ comments }) => {
         <InputWithButton>
           <InputBox>
             <Input placeholder="name" className="input" value={name} onChange={onChangeName} />
-            <Input placeholder="password" className="input" type='password' value={password} onChange={onChangePassword} />
+            <Input placeholder="password" className="input" type="password" value={password}
+                   onChange={onChangePassword} />
           </InputBox>
           <SubmitButton type="submit">POST</SubmitButton>
         </InputWithButton>
-        <CommentInput />
+        <CommentInput onChange={onChangeBody} value={body} />
       </CommentForm>
       <CommentList>
         {comments.map(comment => <Comment key={comment.id} comment={comment} />)}

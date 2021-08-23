@@ -24,7 +24,6 @@ const Post = () => {
     return <span>로딩중</span>;
   }
 
-
   if (error || !data?.isSuccess) {
     alert(error || data?.message);
     location.href = '/';
@@ -43,7 +42,7 @@ const Post = () => {
       <PostBody>
         {data?.data.body}
       </PostBody>
-      <Comments comments={comments} />
+      <Comments comments={comments} post_id={Number(id)} />
     </PostWrapper>
   );
 };

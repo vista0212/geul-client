@@ -11,7 +11,7 @@ export const MainWrapper = styled.section`
   
   @font-face { 
     font-family: 'Roboto Light'; 
-    src: url(../../public/font/Roboto-Light.ttf) format('truetype');
+    src: url(../../styles/font/Roboto-Light.ttf) format('truetype');
   }`
 
 export const MainHeader = styled.header`

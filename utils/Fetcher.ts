@@ -8,7 +8,15 @@ export class Fetcher {
   }
 
   static async post<T>(url: string, body: object) {
-    const result = await fetch(url);
+    const result = await fetch(url, {
+      method: 'post',
+      body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const { success, code, data, message } = await result.json();
+    return new ApiResponse<T>(success, code, data, message);
   }
 
   static async patch<T>(url: string, body: object) {

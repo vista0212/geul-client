@@ -22,7 +22,7 @@ export const CommentInfo = styled.div`
   font-size: 1.25rem;
   color: ${$white};
   
-  .icon_wrapper:first-child {
+  .icon_wrapper:first-of-type {
     margin-right: 0.5rem;
   }`
 

@@ -51,9 +51,29 @@ export const Input = styled.input`
 
   font-size: 1.25rem;
   
+  &:focus-visible {
+    outline: none !important;
+    border-color: #00E6BB;
+    box-shadow: 0 0 10px #719ECE;
+  }
+  
   @media screen and (max-width: 605px) {
     width: 50%;
   }`;
+
+export const CommentInput = styled.textarea`
+  height: 130px;
+  
+  border: 1px solid #00E6BB;
+  background: none;
+  resize: none;
+  
+  &:focus-visible {
+    outline: none !important;
+    border-color: #00E6BB;
+    box-shadow: 0 0 10px #719ECE;
+  }
+`
 
 export const SubmitButton = styled.button`
   padding: 0;
@@ -84,7 +104,3 @@ export const CommentList = styled.ul`
   row-gap: 1.25rem;
   
   padding: 0;`;
-
-export const Comment = styled.li`
-  display: flex;
-  `;

@@ -2,6 +2,7 @@ import React, { FC, useCallback, useRef } from 'react';
 import { Editor } from '@toast-ui/react-editor';
 import {
   CommentForm,
+  CommentInput,
   CommentList,
   CommentsTitle,
   CommentsWrapper,
@@ -10,8 +11,6 @@ import {
   InputWithButton,
   SubmitButton,
 } from './style';
-import 'codemirror/lib/codemirror.css';
-import '@toast-ui/editor/dist/toastui-editor.css';
 import './css.css';
 import { IComment } from '../../typings/db';
 import Comment from '../Comment';
@@ -54,17 +53,10 @@ const Comments: FC<Props> = ({ comments }) => {
           </InputBox>
           <SubmitButton type="submit">POST</SubmitButton>
         </InputWithButton>
-        <Editor
-          initialEditType="markdown"
-          previewStyle="vertical"
-          initialValue=""
-          height="250px"
-          ref={body}
-          useCommandShortcut={true}
-        />,
+        <CommentInput />
       </CommentForm>
       <CommentList>
-        {comments.map(comment => <Comment comment={comment} />)}
+        {comments.map(comment => <Comment key={comment.id} comment={comment} />)}
       </CommentList>
     </CommentsWrapper>
   );

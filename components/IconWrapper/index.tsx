@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { IconWrapperSpan } from './style';
 
 interface IIconWrapper {
   width: number;
@@ -8,9 +9,10 @@ interface IIconWrapper {
 
 const IconWrapper: FC<IIconWrapper> = ({ children, width, height, canClick }) => {
   return (
-    <span className="icon_wrapper" style={{ width, height, cursor: canClick ? 'pointer' : 'none' }}>
+    <IconWrapperSpan className={canClick ? '' : 'icon-wrapper--default'}
+          style={{ width, height, cursor: canClick ? 'pointer' : 'none' }}>
       {children}
-    </span>
+    </IconWrapperSpan>
   );
 };
 

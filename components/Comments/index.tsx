@@ -10,7 +10,6 @@ import {
   InputWithButton,
   SubmitButton,
 } from './style';
-import './css.css';
 import { IComment, IPost } from '../../typings/db';
 import Comment from '../Comment';
 import useInput from '../../hooks/useInput';

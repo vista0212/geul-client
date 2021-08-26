@@ -1,5 +1,5 @@
-import React from 'react';
-import { GoBack, PostBody, PostHeader, PostTitle, PostWrapper } from '@pages/Post/style';
+import React, { useState } from 'react';
+import { GoBack, PostBody, PostHeader, PostTitle, PostWrapper } from '@pages/PostPage/style';
 import BackArrow from '@utils/icon/back_arrow';
 import Share from '@utils/icon/Share';
 import Comments from '../../components/Comments';
@@ -8,16 +8,23 @@ import { useParams } from 'react-router';
 import { Fetcher } from '@utils/Fetcher';
 import { useQuery } from 'react-query';
 import { ApiResponse } from '../../typings/ApiResponse';
+import ToastMessage from '../../components/ToastMessage';
 
-const Post = () => {
+const PostPage = () => {
   const { id } = useParams<{ id: string | undefined }>();
+  const [isActive, setIsActive] = useState(false);
   const { isLoading, error, data } = useQuery<ApiResponse<IPost>>(
     '', () => Fetcher.get<IPost>(`http://localhost:3030/api/posts/${id}`), {
       refetchOnWindowFocus: false,
     });
 
+  const onClickShare = () => {
+    navigator.clipboard.writeText(`http://localhost:3000/post/${id}`);
+    setIsActive(true);
+  };
+
   if (isLoading) {
-    return <span>로딩중</span>;
+    return <></>;
   }
 
   if (error || !data?.isSuccess) {
@@ -33,14 +40,15 @@ const Post = () => {
       </GoBack>
       <PostHeader>
         <PostTitle>{data?.data.title}</PostTitle>
-        <Share onClick={() => navigator.clipboard.writeText(`http://localhost:3000/post/${id}`)} />
+        <Share onClick={onClickShare} />
       </PostHeader>
       <PostBody>
         {data?.data.body}
       </PostBody>
       <Comments comments={data?.data.comments || []} post_id={Number(id)} />
+      <ToastMessage setIsActive={setIsActive} isActive={isActive}>페이지 주소가 클립보드에 복사되었습니다 !</ToastMessage>
     </PostWrapper>
   );
 };
 
-export default Post;
+export default PostPage;

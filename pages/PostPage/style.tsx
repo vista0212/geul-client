@@ -1,12 +1,12 @@
 import styled from '@emotion/styled';
-import { $white } from "@utils/color";
+import { $white } from '@utils/color';
 
 export const PostWrapper = styled.section`
   margin: auto;
   margin-top: 40px;
   
   max-width: 77.5rem;
-  padding: 0 1rem;`
+  padding: 0 1rem;`;
 
 export const GoBack = styled.div`
   display: flex;
@@ -18,7 +18,7 @@ export const GoBack = styled.div`
   
   @media screen and (max-width: 968px) {
     font-size: 0.95rem;
-  }`
+  }`;
 
 export const PostHeader = styled.div`
   display: flex;
@@ -27,7 +27,7 @@ export const PostHeader = styled.div`
   column-gap: 0.25rem;
   
   margin: 1.25rem 0;
-  padding: 0 1.25rem;`
+  padding: 0 1.25rem;`;
 
 export const PostTitle = styled.h1`
   margin: 0;
@@ -39,7 +39,7 @@ export const PostTitle = styled.h1`
   
   @media screen and (max-width: 968px) {
     font-size: 1.5rem;
-  }`
+  }`;
 
 export const PostBody = styled.p`
   padding: 3.125rem 1.25rem;
@@ -53,4 +53,4 @@ export const PostBody = styled.p`
   color: ${$white};
   
   border-top: 1px solid #00E6BB;
-  border-bottom: 1px solid #00E6BB;`
+  border-bottom: 1px solid #00E6BB;`;

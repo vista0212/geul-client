@@ -5,8 +5,8 @@ import { AboutButton, MainHeader, MainLine, MainWrapper } from './style';
 import Logo from '@utils/icon/logo';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
-const Posts = loadable(() => import('@pages/Posts'));
-const Post = loadable(() => import('@pages/Post'));
+const Posts = loadable(() => import('@pages/PostListPage'));
+const Post = loadable(() => import('@pages/PostPage'));
 const Test = loadable(() => import('@pages/Test'));
 
 const queryClient = new QueryClient();

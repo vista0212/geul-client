@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { PostsWrapper } from '@pages/Posts/style';
+import { PostsWrapper } from '@pages/PostListPage/style';
 import { IPost } from '../../typings/db';
 import PostCard from '../../components/PostCard';
 import { Fetcher } from '@utils/Fetcher';
@@ -19,7 +19,7 @@ const Posts = () => {
 
         setPosts(response.data);
       })
-      .catch();
+      .catch(alert);
   }, []);
 
   if (error) {

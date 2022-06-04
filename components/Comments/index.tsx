@@ -26,6 +26,7 @@ const Comments: FC<Props> = ({ comments, post_id }) => {
   const [password, onChangePassword, setPassword] = useInput('');
   const [body, onChangeBody, setBody] = useInput('');
   const [commentList, setCommentList] = useState(comments);
+  const [isActive, setIsActive] = useState(false);
 
   const onSubmit = useCallback(async (e) => {
     e.preventDefault();
@@ -73,7 +74,7 @@ const Comments: FC<Props> = ({ comments, post_id }) => {
       <CommentList>
         {commentList.map(comment => <Comment key={comment.id} comment={comment} />)}
       </CommentList>
-      <ToastMessage>페이지 주소가 클립보드에 복사되었습니다 !</ToastMessage>
+      <ToastMessage isActive={isActive} setIsActive={setIsActive}>페이지 주소가 클립보드에 복사되었습니다 !</ToastMessage>
     </CommentsWrapper>
   );
 };

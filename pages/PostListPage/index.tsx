@@ -4,16 +4,14 @@ import { IPost } from '../../typings/db';
 import PostCard from '../../components/PostCard';
 import { Fetcher } from '../../web-common/src/fetch/Fetcher';
 import { PostFindRequest } from '@pages/PostListPage/dto/PostFindRequest';
+import { SliceResponse } from '../../web-common/src/res/SliceResponse';
 
 const Posts = (): JSX.Element => {
   const [posts, setPosts] = useState<IPost[]>([]);
   const [error, setError] = useState('');
 
   useEffect(() => {
-    Fetcher.get<IPost[]>(
-      'http://localhost:3030/api/post?',
-      new PostFindRequest(),
-    )
+    Fetcher.get<SliceResponse<IPost>>('/api/post', new PostFindRequest())
       .then((response) => {
         console.log({ response });
         if (!response.isSuccess) {
@@ -21,7 +19,7 @@ const Posts = (): JSX.Element => {
           return;
         }
 
-        setPosts(response.data);
+        setPosts(response.data.items);
       })
       .catch(alert);
   }, []);

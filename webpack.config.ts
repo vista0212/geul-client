@@ -3,11 +3,13 @@ import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import webpack from 'webpack';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+import dotenv from 'dotenv';
+const parsedDotenv = dotenv.config();
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
 const config: webpack.Configuration = {
-  name: 'sleact',
+  name: 'geul',
   mode: isDevelopment ? 'development' : 'production',
   devtool: isDevelopment ? 'hidden-source-map' : 'eval',
   resolve: {
@@ -49,7 +51,10 @@ const config: webpack.Configuration = {
           // webpack-dev-server, webpack-cli 라이브러리 필요. 파일 저장시 리로딩(핫리로딩). cors 문제도 해결해줌.
           env: {
             development: {
-              plugins: [['@emotion', { sourceMap: true }], require.resolve('react-refresh/babel')],
+              plugins: [
+                ['@emotion', { sourceMap: true }],
+                require.resolve('react-refresh/babel'),
+              ],
             },
             production: {
               plugins: ['@emotion'],
@@ -69,7 +74,10 @@ const config: webpack.Configuration = {
     // 기존 type check와 웹팩 실행이 순서대로 실행되던 것을 동시에 실행되게 해줘서 더 효율적임.
     new ForkTsCheckerWebpackPlugin({ async: false }),
     // process.env 는 Node 런타임에서만 사용 가능한데, 밑에 함수가 프론트에서 사용할 수 있게 해줌.
-    new webpack.EnvironmentPlugin({ NODE_ENV: isDevelopment ? 'development' : 'production' }),
+    new webpack.EnvironmentPlugin({
+      ...parsedDotenv.parsed,
+      NODE_ENV: isDevelopment ? 'development' : 'production',
+    }),
   ],
   // entries에서부터 적용해왔던 설정들이 여기서 나옴.
   // alecture/dist/app.js 가 생성됨
@@ -111,7 +119,9 @@ const config: webpack.Configuration = {
 if (isDevelopment && config.plugins) {
   config.plugins.push(new webpack.HotModuleReplacementPlugin());
   config.plugins.push(new ReactRefreshWebpackPlugin());
-  config.plugins.push(new BundleAnalyzerPlugin({ analyzerMode: 'server', openAnalyzer: false }));
+  config.plugins.push(
+    new BundleAnalyzerPlugin({ analyzerMode: 'server', openAnalyzer: false }),
+  );
 }
 
 // 배포환경에서 사용할 플러그인

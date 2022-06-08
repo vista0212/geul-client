@@ -5,18 +5,21 @@ export function toQueryString(queryObject?: object): string {
     return '';
   }
 
-  return Object.entries(queryObject)
-    .map(([key, value]) => {
-      if (isArray(value)) {
-        value = value.join(',');
-      }
+  return (
+    '?' +
+    Object.entries(queryObject)
+      .map(([key, value]) => {
+        if (isArray(value)) {
+          value = value.join(',');
+        }
 
-      if (!value || !value.length) {
-        return;
-      }
+        if (!value || !value.length) {
+          return;
+        }
 
-      return encodeURIComponent(key) + '=' + encodeURIComponent(value);
-    })
-    .filter((v) => v)
-    .join('&');
+        return encodeURIComponent(key) + '=' + encodeURIComponent(value);
+      })
+      .filter((v) => v)
+      .join('&')
+  );
 }

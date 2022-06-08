@@ -2,10 +2,11 @@ import React from 'react';
 import { render } from 'react-dom';
 
 import App from '@layouts/App/App';
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter } from 'react-router-dom';
 
 render(
   <BrowserRouter>
-    <App/>
+    <App />
   </BrowserRouter>,
-  document.querySelector('#app'));
+  document.querySelector('#app'),
+);

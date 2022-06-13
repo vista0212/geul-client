@@ -29,7 +29,7 @@ const Comments: FC<Props> = ({ comments, post_id }) => {
   const [isActive, setIsActive] = useState(false);
 
   const onSubmit = useCallback(
-    async (e) => {
+    async (e: React.FormEvent) => {
       e.preventDefault();
       if (!name || !password || !body) {
         alert('값을 입력해주세요!');
@@ -57,7 +57,7 @@ const Comments: FC<Props> = ({ comments, post_id }) => {
 
         setCommentList((prevState) => [response.data, ...prevState]);
       } catch (e) {
-        alert(e.message || '문제가 발생했습니다 !');
+        alert('문제가 발생했습니다 !');
       }
     },
     [body, name, password, commentList],

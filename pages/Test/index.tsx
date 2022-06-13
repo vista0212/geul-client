@@ -10,8 +10,7 @@ import hljs from 'highlight.js';
 export type ReactEditorProps = {};
 
 const Test = (props: ReactEditorProps) => {
-  const onChange = () => {
-  };
+  const onChange = () => {};
 
   const syntaxHighlightPlugIn = (editor: any) => {
     const { codeBlockManager } = Object.getPrototypeOf(editor).constructor;

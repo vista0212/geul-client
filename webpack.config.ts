@@ -1,14 +1,14 @@
 import path from 'path';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
-import webpack from 'webpack';
+import webpack, { Configuration } from 'webpack';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import dotenv from 'dotenv';
-const parsedDotenv = dotenv.config();
+dotenv.config();
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
-const config: webpack.Configuration = {
+const config: Configuration = {
   name: 'geul',
   mode: isDevelopment ? 'development' : 'production',
   devtool: isDevelopment ? 'hidden-source-map' : 'eval',
@@ -26,9 +26,11 @@ const config: webpack.Configuration = {
       // '@typings': path.resolve(__dirname, 'typings'),
     },
   },
-  // 메일 파일? 검색 필요.
+  // ./src 를 기본으로 함
+  // 애플리케이션이 여기에서 실행되며
+  // webpack이 번들링을 시작
   entry: {
-    app: './client',
+    app: './client.tsx',
   },
   module: {
     // 바벨 로더가 ts나 tsx 파일을 자바스크립트로 바꿔줄 때 적용할 설정
@@ -52,12 +54,12 @@ const config: webpack.Configuration = {
           env: {
             development: {
               plugins: [
-                ['@emotion', { sourceMap: true }],
+                ['@emotion/babel-plugin', { sourceMap: true }],
                 require.resolve('react-refresh/babel'),
               ],
             },
             production: {
-              plugins: ['@emotion'],
+              plugins: ['@emotion/babel-plugin'],
             },
           },
         },
@@ -74,9 +76,8 @@ const config: webpack.Configuration = {
     // 기존 type check와 웹팩 실행이 순서대로 실행되던 것을 동시에 실행되게 해줘서 더 효율적임.
     new ForkTsCheckerWebpackPlugin({ async: false }),
     // process.env 는 Node 런타임에서만 사용 가능한데, 밑에 함수가 프론트에서 사용할 수 있게 해줌.
-    new webpack.EnvironmentPlugin({
-      ...parsedDotenv.parsed,
-      NODE_ENV: isDevelopment ? 'development' : 'production',
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify(process.env),
     }),
   ],
   // entries에서부터 적용해왔던 설정들이 여기서 나옴.
@@ -98,20 +99,6 @@ const config: webpack.Configuration = {
     historyApiFallback: true,
     port: 3000, // 프론트 서버 포트
     publicPath: '/dist/',
-
-    /**
-     * CORS 문제를 프론트에서 해결해줌.
-     * 프론트엔드에서 '/api/'로 보내는 요청은 주소를 target으로 바꿔서 요청하겠다는 뜻.
-     *
-     * 모든 경우에서 사용이 가능한 것은 아님.
-     * 프론트, 백 둘 다 로컬호스트일 때 사용 가능
-     */
-    // proxy: {
-    //   '/api/': {
-    //     target: 'http://localhost:3095',
-    //     changeOrigin: true,
-    //   },
-    // },
   },
 };
 

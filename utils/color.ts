@@ -1,1 +1,1 @@
-export const $white = `hsla(255, 100%, 100%, 0.9)`;
+export const $white = `rgb(236, 239, 244);`;

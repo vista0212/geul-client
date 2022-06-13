@@ -3,7 +3,9 @@ import { ApiResponse } from '../res/ApiResponse';
 
 export class Fetcher {
   static async get<T>(url: string, query?: object): Promise<ApiResponse<T>> {
-    const result = await fetch(url + toQueryString(query));
+    const result = await fetch(
+      process.env.REACT_APP_API_DOMAIN + url + toQueryString(query),
+    );
     const { statusCode, message, data } = await result.json();
     return new ApiResponse<T>(statusCode, message, data);
   }

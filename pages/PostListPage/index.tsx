@@ -21,7 +21,9 @@ const Posts = (): JSX.Element => {
 
         setPosts(response.data.items);
       })
-      .catch(alert);
+      .catch((e) => {
+        alert(e.message);
+      });
   }, []);
 
   if (error) {

@@ -21,14 +21,16 @@ const PostPage = (): JSX.Element => {
   const [isActive, setIsActive] = useState(false);
   const { isLoading, error, data } = useQuery<ApiResponse<IPost>>(
     '',
-    () => Fetcher.get<IPost>(`http://localhost:3030/api/post/${id}`),
+    () => Fetcher.get<IPost>(`/api/post/${id}`),
     {
       refetchOnWindowFocus: false,
     },
   );
 
   const onClickShare = () => {
-    navigator.clipboard.writeText(`http://localhost:3000/post/${id}`);
+    navigator.clipboard.writeText(
+      `${process.env.REACT_APP_APP_DOMAIN}/post/${id}`,
+    );
     setIsActive(true);
   };
 

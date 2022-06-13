@@ -8,12 +8,14 @@ interface BaseEntity {
 export interface IPost extends BaseEntity {
   title: string;
   body: string;
-  isPublished: string;
+  status: string;
+  viewCount: number;
+  publishedAt: string;
   file: IFile;
-  comments: Array<IComment>;
+  comments?: Array<IComment>;
 }
 
-export interface IComment  extends BaseEntity {
+export interface IComment extends BaseEntity {
   id: number;
   name: string;
   body: string;

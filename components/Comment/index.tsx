@@ -15,7 +15,9 @@ const Comment: FC<Props> = ({ comment }) => {
   return (
     <CommentWrapper key={id}>
       <CommentInfo>
-        <span>{name}&nbsp;({FormatDate.format(created_at, 'YYYY년 MM월 DD일')})</span>
+        <span>
+          {name}&nbsp;({FormatDate.format(created_at, 'YYYY년 MM월 DD일')})
+        </span>
         <div>
           <IconWrapper width={24} height={24} canClick={true}>
             <Pen />

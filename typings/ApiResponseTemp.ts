@@ -1,12 +1,10 @@
-export class ApiResponse<T> {
-
+export class ApiResponseTemp<T> {
   constructor(
     private _success: boolean,
     private _code: boolean,
     private _data: T,
     private _message: string,
-  ) {
-  }
+  ) {}
 
   get isSuccess(): boolean {
     return this._success;

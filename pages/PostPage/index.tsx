@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   GoBack,
   PostBody,
@@ -19,13 +19,23 @@ import { ApiResponse } from '../../web-common/src/res/ApiResponse';
 const PostPage = (): JSX.Element => {
   const { id } = useParams<{ id: string | undefined }>();
   const [isActive, setIsActive] = useState(false);
-  const { isLoading, error, data } = useQuery<ApiResponse<IPost>>(
-    '',
-    () => Fetcher.get<IPost>(`/api/post/${id}`),
-    {
-      refetchOnWindowFocus: false,
-    },
-  );
+  const [post, setPost] = useState<IPost>({} as IPost);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    Fetcher.get<IPost>(`/api/post/${id}`)
+      .then((response) => {
+        if (!response.isSuccess) {
+          setError(response.message || '게시글 조회가 실패했습니다.');
+          return;
+        }
+
+        setPost(response.data);
+      })
+      .catch((e) => {
+        setError(e.message);
+      });
+  }, []);
 
   const onClickShare = () => {
     navigator.clipboard.writeText(
@@ -34,13 +44,9 @@ const PostPage = (): JSX.Element => {
     setIsActive(true);
   };
 
-  if (isLoading) {
+  if (error) {
+    alert(error);
     return <></>;
-  }
-
-  if (error || !data?.isSuccess) {
-    alert(error || data?.message);
-    location.href = '/';
   }
 
   return (
@@ -50,11 +56,11 @@ const PostPage = (): JSX.Element => {
         <span>뒤로가기</span>
       </GoBack>
       <PostHeader>
-        <PostTitle>{data?.data.title}</PostTitle>
+        <PostTitle>{post.title}</PostTitle>
         <Share onClick={onClickShare} />
       </PostHeader>
-      <PostBody>{data?.data.body}</PostBody>
-      <Comments comments={data?.data.comments || []} post_id={Number(id)} />
+      <PostBody>{post.body}</PostBody>
+      <Comments comments={post.comments || []} post_id={Number(id)} />
       <ToastMessage setIsActive={setIsActive} isActive={isActive}>
         페이지 주소가 클립보드에 복사되었습니다 !
       </ToastMessage>

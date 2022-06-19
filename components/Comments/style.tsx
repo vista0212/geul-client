@@ -9,7 +9,7 @@ export const CommentsWrapper = styled.div`
   padding: 1.25rem;
 
   .input {
-    border: 1px solid #00e6bb;
+    border: 1px solid #81a1c1;
     background: #302d2d;
     color: ${$white};
 
@@ -59,8 +59,8 @@ export const Input = styled.input`
 
   &:focus-visible {
     outline: none !important;
-    border-color: #00e6bb;
-    box-shadow: 0 0 10px #719ece;
+    border-color: #81a1c1;
+    box-shadow: 0 0 3px #719ece;
   }
 
   @media screen and (max-width: 605px) {
@@ -77,13 +77,13 @@ export const CommentInput = styled.textarea`
   font-family: inherit;
   color: #fff;
 
-  border: 1px solid #00e6bb;
+  border: 1px solid #81a1c1;
   background: none;
   resize: none;
 
   &:focus-visible {
     outline: none !important;
-    border-color: #00e6bb;
+    border-color: #81a1c1;
     box-shadow: 0 0 10px #719ece;
   }
 `;
@@ -98,12 +98,12 @@ export const SubmitButton = styled.button`
   color: ${$white};
 
   border: 0;
-  background: #00a687;
+  background: #5e81ac;
 
   cursor: pointer;
 
   &:hover {
-    background: #009274;
+    filter: brightness(0.9);
   }
 
   @media screen and (max-width: 605px) {

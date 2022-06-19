@@ -6,7 +6,7 @@
   "author": "k1oo <kbaek1202@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "PORT=3000 && cross-env TS_NODE_PROJECT=\"tsconfig-for-webpack-config.json\" webpack serve",
+    "dev": "PORT=3000 && cross-env TS_NODE_PROJECT=\"tsconfig-for-webpack-config.json\" webpack serve --no-stats",
     "build": "cross-env NODE_ENV=production TS_NODE_PROJECT=\"tsconfig-for-webpack-config.json\" webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

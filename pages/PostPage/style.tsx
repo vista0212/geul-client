@@ -56,6 +56,6 @@ export const PostBody = styled.p`
   font-size: 1.125rem;
   color: ${$white};
 
-  border-top: 1px solid #00e6bb;
-  border-bottom: 1px solid #00e6bb;
+  border-top: 1px solid #81a1c1;
+  border-bottom: 1px solid #81a1c1;
 `;

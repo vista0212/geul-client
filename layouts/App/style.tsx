@@ -44,7 +44,7 @@ export const MainLine = styled.hr`
   height: 1px;
   width: 100%;
   border: none;
-  border-bottom: 1px solid #eceff4;
+  border-bottom: 1px solid #81a1c1;
 `;
 
 export const AboutButton = styled.button`

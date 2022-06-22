@@ -8,13 +8,10 @@ import {
 } from '@pages/PostPage/style';
 import BackArrow from '@utils/icon/back_arrow';
 import Share from '@utils/icon/Share';
-import Comments from '../../components/Comments';
 import { IPost } from '../../typings/db';
 import { useParams } from 'react-router';
 import { Fetcher } from '../../web-common/src/fetch/Fetcher';
-import { useQuery } from 'react-query';
 import ToastMessage from '../../components/ToastMessage';
-import { ApiResponse } from '../../web-common/src/res/ApiResponse';
 
 const PostPage = (): JSX.Element => {
   const { id } = useParams<{ id: string | undefined }>();
@@ -60,7 +57,7 @@ const PostPage = (): JSX.Element => {
         <Share onClick={onClickShare} />
       </PostHeader>
       <PostBody>{post.body}</PostBody>
-      <Comments comments={post.comments || []} post_id={Number(id)} />
+      {/*<Comments comments={post.comments || []} post_id={Number(id)} />*/}
       <ToastMessage setIsActive={setIsActive} isActive={isActive}>
         페이지 주소가 클립보드에 복사되었습니다 !
       </ToastMessage>

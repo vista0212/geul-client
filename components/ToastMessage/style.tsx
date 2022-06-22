@@ -18,5 +18,5 @@ export const ToastMessageWrapper = styled.div`
   line-height: 3.125rem;
 
   border-radius: 0.25rem;
-  background-color: #00b698;
+  background-color: #81a1c1;
 `;

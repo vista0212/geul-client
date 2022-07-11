@@ -5,6 +5,7 @@ import PostCard from '../../components/PostCard';
 import { Fetcher } from '../../web-common/src/fetch/Fetcher';
 import { PostFindRequest } from '@pages/PostListPage/dto/PostFindRequest';
 import { SliceResponse } from '../../web-common/src/res/SliceResponse';
+import PostItem from '../../components/PostItem';
 
 const Posts = (): JSX.Element => {
   const [posts, setPosts] = useState<IPost[]>([]);
@@ -34,7 +35,7 @@ const Posts = (): JSX.Element => {
   return (
     <PostsWrapper>
       {posts.map((post) => (
-        <PostCard key={post.id} post={post} />
+        <PostItem key={post.id} post={post} />
       ))}
     </PostsWrapper>
   );

@@ -8,6 +8,7 @@ interface BaseEntity {
 export interface IPost extends BaseEntity {
   title: string;
   body: string;
+  introduction: string;
   status: string;
   viewCount: number;
   publishedAt: string;

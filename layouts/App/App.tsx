@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import loadable from '@loadable/component';
 import { Redirect, Route, Switch } from 'react-router';
-import { AboutButton, MainHeader, MainLine, MainWrapper } from './style';
+import { MainHeader, MainLine, MainWrapper } from './style';
 import Logo from '@utils/icon/logo';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
@@ -19,7 +19,6 @@ const App: FC = () => {
       <MainWrapper>
         <MainHeader>
           <Logo />
-          <AboutButton>ABOUT</AboutButton>
         </MainHeader>
         <MainLine />
         <Switch>

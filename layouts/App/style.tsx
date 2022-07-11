@@ -17,7 +17,7 @@ export const MainWrapper = styled.section`
 export const MainHeader = styled.header`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 
   max-width: 77.5rem;
   height: 60px;
@@ -45,19 +45,4 @@ export const MainLine = styled.hr`
   width: 100%;
   border: none;
   border-bottom: 1px solid #81a1c1;
-`;
-
-export const AboutButton = styled.button`
-  margin: 0;
-  padding: 0;
-
-  font-size: 24px;
-  color: #e5e9f0;
-
-  border: none;
-  background: none;
-
-  @media screen and (max-width: 605px) {
-    display: none;
-  }
 `;

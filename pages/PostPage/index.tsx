@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import {
-  GoBack,
   PostBody,
   PostHeader,
   PostTitle,
   PostWrapper,
 } from '@pages/PostPage/style';
-import BackArrow from '@utils/icon/back_arrow';
 import Share from '@utils/icon/Share';
 import { IPost } from '../../typings/db';
 import { useParams } from 'react-router';
@@ -48,10 +46,6 @@ const PostPage = (): JSX.Element => {
 
   return (
     <PostWrapper>
-      <GoBack>
-        <BackArrow />
-        <span>뒤로가기</span>
-      </GoBack>
       <PostHeader>
         <PostTitle>{post.title}</PostTitle>
         <Share onClick={onClickShare} />

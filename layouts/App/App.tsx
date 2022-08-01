@@ -5,7 +5,7 @@ import { MainHeader, MainLine, MainWrapper } from './style';
 import Logo from '@utils/icon/logo';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
-const Posts = loadable(() => import('@pages/PostListPage'));
+const PostList = loadable(() => import('@pages/PostListPage'));
 const Post = loadable(() => import('@pages/PostPage'));
 const Test = loadable(() => import('@pages/Test'));
 
@@ -22,7 +22,7 @@ const App: FC = () => {
         </MainHeader>
         <MainLine />
         <Switch>
-          <Route exact path="/" component={Posts} />
+          <Route exact path="/" component={PostList} />
           <Route exact path="/post/:id" component={Post} />
           <Route exact path="/test" component={Test} />
           <Redirect to="/" />

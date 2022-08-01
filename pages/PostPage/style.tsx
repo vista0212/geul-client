@@ -5,20 +5,15 @@ export const PostWrapper = styled.section`
   margin: auto;
   margin-top: 40px;
 
-  max-width: 77.5rem;
+  max-width: 910px;
   padding: 0 1rem;
-`;
-
-export const GoBack = styled.div`
-  display: flex;
-  align-items: center;
-
-  color: #c4c4c4;
-
-  column-gap: 0.25rem;
 
   @media screen and (max-width: 968px) {
-    font-size: 0.95rem;
+    max-width: 580px;
+  }
+
+  @media screen and (max-width: 605px) {
+    max-width: 250px;
   }
 `;
 

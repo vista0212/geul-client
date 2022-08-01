@@ -21,11 +21,30 @@ export class FormatDate {
     }
 
     formatString = formatString.replace('yyyy', date.getFullYear().toString());
-    formatString = formatString.replace('MM', (date.getMonth() + 1).toString());
-    formatString = formatString.replace('dd', date.getDate().toString());
-    formatString = formatString.replace('hh', date.getHours().toString());
-    formatString = formatString.replace('mm', date.getMinutes().toString());
-    formatString = formatString.replace('ss', date.getSeconds().toString());
+    formatString = formatString.replace(
+      'MM',
+      FormatDate.toString(date.getMonth() + 1),
+    );
+    formatString = formatString.replace(
+      'dd',
+      FormatDate.toString(date.getDate()),
+    );
+    formatString = formatString.replace(
+      'hh',
+      FormatDate.toString(date.getHours()),
+    );
+    formatString = formatString.replace(
+      'mm',
+      FormatDate.toString(date.getMinutes()),
+    );
+    formatString = formatString.replace(
+      'ss',
+      FormatDate.toString(date.getSeconds()),
+    );
     return formatString;
+  }
+
+  private static toString(date: number): string {
+    return date < 10 ? `0${date}` : date.toString();
   }
 }

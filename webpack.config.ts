@@ -4,7 +4,7 @@ import webpack, { Configuration } from 'webpack';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import dotenv from 'dotenv';
-dotenv.config();
+dotenv.config({ path: `.env.${process.env.NODE_ENV || 'local'}` });
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 

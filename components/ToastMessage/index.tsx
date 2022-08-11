@@ -16,7 +16,7 @@ const ToastMessage: FC<IToastMessage> = ({
     if (isActive) {
       setTimeout(() => setIsActive(false), 2000);
     }
-  });
+  }, [isActive]);
 
   return isActive ? (
     <ToastMessageWrapper>{children}</ToastMessageWrapper>

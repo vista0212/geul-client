@@ -9,31 +9,35 @@ import { PostFindRequest } from '@pages/PostListPage/dto/PostFindRequest';
 import { SliceResponse } from '../../web-common/src/res/SliceResponse';
 import PostItem from '../../components/PostItem';
 import useInput from '../../hooks/useInput';
+import ToastMessage from '../../components/ToastMessage';
+import useDebounce from '../../hooks/useDebounce';
 
 const PostList = (): JSX.Element => {
   const [posts, setPosts] = useState<IPost[]>([]);
-  const [keyword, onChangeKeyword, setKeyword] = useInput('');
+  const [isActive, setIsActive] = useState(false);
+  const [keyword, onChangeKeyword] = useInput('');
   const [error, setError] = useState('');
+  const searchDebounce = useDebounce<string>(keyword);
 
   useEffect(() => {
-    Fetcher.get<SliceResponse<IPost>>(`/api/post`, new PostFindRequest(keyword))
+    Fetcher.get<SliceResponse<IPost>>(
+      `/api/post`,
+      new PostFindRequest(searchDebounce),
+    )
       .then((response) => {
         if (!response.isSuccess) {
+          setIsActive(true);
           setError(response.message || '게시글 목록 조회에 실패했습니다.');
           return;
         }
 
         setPosts(response.data.items);
       })
-      .catch((e) => {
-        alert(e.message);
+      .catch(() => {
+        setIsActive(true);
+        setError('문제가 발생했습니다.');
       });
-  }, [keyword]);
-
-  if (error) {
-    alert(error);
-    return <></>;
-  }
+  }, [searchDebounce]);
 
   return (
     <PostListWrapper>
@@ -45,6 +49,9 @@ const PostList = (): JSX.Element => {
       {posts.map((post) => (
         <PostItem key={post.id} post={post} />
       ))}
+      <ToastMessage isActive={isActive} setIsActive={setIsActive}>
+        {error}
+      </ToastMessage>
     </PostListWrapper>
   );
 };

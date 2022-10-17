@@ -1,7 +1,7 @@
 import { SliceRequest } from '../../../web-common/src/req/SliceRequest';
 
 export class PostFindRequest extends SliceRequest {
-  private readonly tags: string[] = [];
+  private readonly tags: string[];
   private readonly keyword: string;
 
   constructor(

@@ -1,8 +1,7 @@
 import React, { FC } from 'react';
 import loadable from '@loadable/component';
 import { Redirect, Route, Switch } from 'react-router';
-import { MainHeader, MainLine, MainWrapper, HeaderMenuButton } from './style';
-import Logo from '@utils/icon/logo';
+import { HeaderMenuButton, MainHeader, MainLine, MainWrapper } from './style';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 const PostList = loadable(() => import('@pages/PostListPage'));
@@ -12,6 +11,7 @@ const Test = loadable(() => import('@pages/Test'));
 const queryClient = new QueryClient();
 
 const App: FC = () => {
+  // 하나를 키면 다른 하나가 꺼지는 스위치처럼 여러 개 중 하나만 선택한다는 의미.
   return (
     <QueryClientProvider client={queryClient}>
       <MainWrapper>

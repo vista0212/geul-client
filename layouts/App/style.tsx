@@ -18,7 +18,7 @@ export const MainWrapper = styled.section`
 export const MainHeader = styled.header`
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
 
   max-width: 77.5rem;
   height: 60px;
